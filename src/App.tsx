@@ -10,7 +10,7 @@ export default function App() {
   const phoneNumber = "023 9200 0000"; // Placeholder Portsmouth number
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
- const handleLocationShare = () => {
+  const handleLocationShare = () => {
     const phone = "447366302341"; // Your dispatch WhatsApp number
     
     if (navigator.geolocation) {
@@ -45,6 +45,7 @@ export default function App() {
       window.location.href = "https://wa.me/" + phone + "?text=" + encodeURIComponent("URGENT: I need recovery assistance.");
     }
   };
+
   const howItWorks = [
     {
       id: 1,

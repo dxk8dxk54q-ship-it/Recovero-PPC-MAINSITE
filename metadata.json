@@ -1,5 +1,7 @@
 {
-  "name": "Remix: test 1",
+  "name": "remix-1-share-exact-location-test",
   "description": "Fast and reliable 24/7 vehicle recovery and breakdown assistance in Portsmouth and surrounding areas.",
-  "requestFramePermissions": ["geolocation"]
+  "requestFramePermissions": [
+    "geolocation"
+  ]
 }
