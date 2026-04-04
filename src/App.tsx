@@ -10,23 +10,41 @@ export default function App() {
   const phoneNumber = "023 9200 0000"; // Placeholder Portsmouth number
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
-  const handleLocationShare = () => {
+ const handleLocationShare = () => {
+    const phone = "447366302341"; // Your dispatch WhatsApp number
+    
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          const { latitude, longitude } = position.coords;
-          const url = `https://wa.me/?text=My%20exact%20location%20is:%20https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
-          window.open(url, '_blank');
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          // Clean standard Google Maps link
+          const mapLink = "https://www.google.com/maps?q=" + lat + "," + lng;
+          const message = encodeURIComponent("URGENT: I need recovery. My location: " + mapLink);
+          
+          // SAFARI BYPASS: Create an invisible link and click it programmatically
+          const link = document.createElement('a');
+          link.href = "https://wa.me/" + phone + "?text=" + message;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
         },
-        (error) => {
-          console.error("Error getting location:", error);
-        }
+        () => {
+          // Fallback if they block location or it fails
+          const failMsg = encodeURIComponent("URGENT: I need recovery assistance. (Location blocked).");
+          const link = document.createElement('a');
+          link.href = "https://wa.me/" + phone + "?text=" + failMsg;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        },
+        // Force quick response so Safari doesn't time out the click
+        { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
       );
     } else {
-      console.error("Geolocation is not supported by this browser.");
+      window.location.href = "https://wa.me/" + phone + "?text=" + encodeURIComponent("URGENT: I need recovery assistance.");
     }
   };
-
   const howItWorks = [
     {
       id: 1,
