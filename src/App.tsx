@@ -48,20 +48,20 @@ export default function App() {
 
   const faqs = [
     {
-      question: "Do I need membership?",
-      answer: "No. Just call if you need vehicle recovery."
+      question: "How fast can you get to me?",
+      answer: "We are local to Portsmouth and aim to get a truck to you as fast as possible. Call us now for an ETA."
     },
     {
-      question: "Can you help with non-runners?",
-      answer: "Yes. We help with breakdowns, non-runners and roadside recovery."
+      question: "Can you help right now?",
+      answer: "Yes. We operate 24/7 and are ready to dispatch a recovery truck immediately."
+    },
+    {
+      question: "Do I get a quote before recovery?",
+      answer: "Yes. We provide an upfront quote before we dispatch a truck."
     },
     {
       question: "Do you cover my area?",
-      answer: "We cover Portsmouth and nearby areas. Call with your location and we’ll confirm."
-    },
-    {
-      question: "Will I get a quote before recovery is arranged?",
-      answer: "Yes. We give you an upfront quote before recovery is arranged."
+      answer: "We cover Portsmouth and all surrounding areas. Call us with your location to confirm."
     }
   ];
 
@@ -111,13 +111,13 @@ export default function App() {
             <h1 
               className="text-4xl md:text-5xl font-black uppercase leading-[0.95] tracking-tighter mb-4"
             >
-              Broken down in <span className="text-orange-500">Portsmouth?</span>
+              BROKEN DOWN IN <span className="text-orange-500">PORTSMOUTH?</span>
             </h1>
 
             <h2 
               className="text-lg md:text-xl font-medium text-gray-300 leading-tight mb-8 max-w-md"
             >
-              Need recovery right now? We connect you to a local recovery truck fast.
+              Need recovery right now? We’ll get a recovery truck to you fast.
             </h2>
 
             <ul 
@@ -125,8 +125,8 @@ export default function App() {
             >
               {[
                 "Local Portsmouth recovery",
-                "Fast help for non-runners & breakdowns",
-                "Upfront quote before we send anyone",
+                "Fast help for breakdowns & non-runners",
+                "Upfront quote before dispatch",
                 "No membership required"
               ].map((text, i) => (
                 <li key={i} className="flex items-start gap-3">
@@ -137,7 +137,7 @@ export default function App() {
             </ul>
 
             <p className="text-sm font-black text-orange-500 uppercase tracking-widest mb-2">
-              Call now — we’ll get you sorted fast
+              CALL NOW — WE’LL GET YOU SORTED FAST
             </p>
             <a
               href="tel:02392000000"
@@ -165,21 +165,33 @@ export default function App() {
           <h2 className="text-2xl font-black uppercase tracking-tighter mb-8 text-center">
             WHAT WE HELP WITH
           </h2>
+          <div className="grid grid-cols-2 gap-3 mb-8">
+            {[
+              "Flat battery", "Roadside issues"
+            ].map((item) => (
+              <div key={item} className="bg-gray-900/40 backdrop-blur-md border border-white/5 rounded-xl p-4 flex items-center gap-3">
+                <CheckCircle2 className="w-5 h-5 text-orange-500 shrink-0" />
+                <span className="font-bold text-sm uppercase tracking-tight text-white">
+                  {item}
+                </span>
+              </div>
+            ))}
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
               {
                 title: "Vehicle Recovery",
-                description: "Broken down in Portsmouth? Don't waste time with national call centres. We're local, we're fast, and we're ready to move you NOW.",
+                description: "Broken down in Portsmouth? We’ll get a recovery truck to you fast.",
                 image: "https://github.com/dxk8dxk54q-ship-it/Recovero/blob/main/images/breakdown3-recovery.jpg?raw=true"
               },
               {
                 title: "Vehicle Transport",
-                description: "Need a vehicle moved in Portsmouth? Don't gamble with your car. We offer the safest, most reliable transport in the area. Call us.",
+                description: "Need a vehicle moved? We’ll get it picked up and delivered quickly.",
                 image: "https://github.com/dxk8dxk54q-ship-it/Recovero/blob/main/images/Transport-recovery.jpg.jpg?raw=true"
               },
               {
                 title: "Accident Recovery",
-                description: "Accident in Portsmouth? Stay safe and let us handle the rest. We’re the only team you need to clear the scene fast. Call Recovero immediately.",
+                description: "Accident in Portsmouth? We’ll recover your vehicle fast and get it cleared safely.",
                 image: "https://github.com/dxk8dxk54q-ship-it/Recovero/blob/main/images/accident-recovery.jpg?raw=true"
               }
             ].map((service) => (
@@ -196,34 +208,18 @@ export default function App() {
               </div>
             ))}
           </div>
-        </section>
-
-        {/* Service Areas Section */}
-        <section className="px-6 mb-16 max-w-lg mx-auto">
-          <h2 className="text-2xl font-black uppercase tracking-tighter mb-2">
-            Service areas
-          </h2>
-          <p className="text-gray-400 font-bold text-xs uppercase tracking-widest mb-6">
-            24/7 coverage across Portsmouth and nearby areas
-          </p>
           
-          <div className="grid grid-cols-2 gap-3 mb-6">
-            {[
-              "Portsmouth", "Petersfield", "Winchester", 
-              "Andover", "Fareham", "Havant", 
-              "Waterlooville", "Gosport"
-            ].map((area) => (
-              <div key={area} className="flex items-center gap-2 group cursor-default">
-                <div className="w-1.5 h-1.5 rounded-full bg-orange-500" />
-                <span className="text-sm font-black uppercase tracking-tight text-gray-300 group-hover:text-white transition-colors">
-                  {area}
-                </span>
-              </div>
-            ))}
+          <div className="mt-12 text-center">
+            <p className="text-sm font-black text-orange-500 uppercase tracking-widest mb-4">
+              Call now — we’ll get a recovery truck out to you fast
+            </p>
+            <a
+              href="tel:02392000000"
+              className="group w-full bg-orange-500 text-black font-black text-2xl py-6 px-4 rounded-xl flex items-center justify-center gap-4 transition-colors shadow-[0_10px_40px_-10px_rgba(249,115,22,0.5)] z-[999] relative block cursor-pointer"
+            >
+              CALL NOW
+            </a>
           </div>
-          <p className="text-xs font-bold uppercase tracking-widest text-orange-500">
-            24/7 vehicle recovery across Portsmouth and surrounding areas
-          </p>
         </section>
 
         {/* FAQ Section */}
