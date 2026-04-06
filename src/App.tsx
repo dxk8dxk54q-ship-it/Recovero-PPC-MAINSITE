@@ -46,27 +46,6 @@ export default function App() {
     }
   };
 
-  const howItWorks = [
-    {
-      id: 1,
-      title: "1. Call now",
-      description: "Tap the orange button and tell us your location, vehicle and what the issue is.",
-      icon: <Phone className="w-5 h-5 text-orange-500" />
-    },
-    {
-      id: 2,
-      title: "2. Tell us the details",
-      description: "We confirm the job details and the type of recovery needed.",
-      icon: <Truck className="w-5 h-5 text-orange-500" />
-    },
-    {
-      id: 3,
-      title: "3. Vehicle moved safely",
-      description: "Your vehicle is recovered and taken where it needs to go.",
-      icon: <Anchor className="w-5 h-5 text-orange-500" />
-    }
-  ];
-
   const faqs = [
     {
       question: "Do I need membership?",
@@ -132,24 +111,26 @@ export default function App() {
             <h1 
               className="text-4xl md:text-5xl font-black uppercase leading-[0.95] tracking-tighter mb-4"
             >
-              24/7 Vehicle Recovery<br />
-              in <span className="text-orange-500">Portsmouth</span>
+              Broken down in <span className="text-orange-500">Portsmouth?</span>
             </h1>
 
             <h2 
               className="text-lg md:text-xl font-medium text-gray-300 leading-tight mb-8 max-w-md"
             >
-              Broken down in Portsmouth? Recovero helps with breakdowns, non-runners and roadside assistance across Portsmouth and nearby areas.<br /><br />Whatever the issue we get you moving again!
+              Need recovery right now? We connect you to a local recovery truck fast.
             </h2>
+            <p className="text-sm font-black text-orange-500 uppercase tracking-widest mb-4">
+              Call now and get a quote in seconds
+            </p>
 
             <ul 
               className="w-full text-left space-y-3 mb-10"
             >
               {[
-                "Local Portsmouth coverage",
-                "Fast help for breakdowns and non-runners",
-                "Upfront quote before recovery is arranged",
-                "Arrival in as little as 30min!"
+                "Local Portsmouth recovery",
+                "Fast help for non-runners & breakdowns",
+                "Upfront quote before we send anyone",
+                "No membership required"
               ].map((text, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-orange-500 shrink-0 mt-0.5" />
@@ -158,6 +139,9 @@ export default function App() {
               ))}
             </ul>
 
+            <p className="text-sm font-black text-orange-500 uppercase tracking-widest mb-2">
+              Call now — we’ll get you sorted fast
+            </p>
             <a
               href="tel:02392000000"
               className="group w-full bg-orange-500 text-black font-black text-2xl py-6 px-4 rounded-xl flex items-center justify-center gap-4 transition-colors shadow-[0_10px_40px_-10px_rgba(249,115,22,0.5)] z-[999] relative block cursor-pointer"
@@ -169,26 +153,31 @@ export default function App() {
           </div>
         </section>
 
-        {/* How It Works Section */}
+        {/* Trust Strip */}
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {["24/7 SERVICE", "UPFRONT PRICING", "LOCAL COVERAGE", "NO MEMBERSHIP"].map((item) => (
+            <div key={item} className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-orange-500" />
+              <span className="text-xs font-black uppercase tracking-widest text-gray-300">{item}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* What We Help With Section */}
         <section className="px-6 mb-16 max-w-lg mx-auto">
           <h2 className="text-2xl font-black uppercase tracking-tighter mb-8">
-            HOW IT WORKS
+            WHAT WE HELP WITH
           </h2>
-
-          <div className="space-y-4">
-            {howItWorks.map((step) => (
-              <div key={step.id} className="bg-gray-900/40 backdrop-blur-md border border-white/5 rounded-2xl p-5 flex gap-4 items-start">
-                <div className="bg-gray-800 p-3 rounded-xl shrink-0">
-                  {step.icon}
-                </div>
-                <div>
-                  <h3 className="font-black uppercase tracking-tight text-white mb-1">
-                    {step.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              "Car won’t start", "Flat battery", "Accident recovery",
+              "Vehicle transport", "Non-runners", "Roadside issues"
+            ].map((item) => (
+              <div key={item} className="bg-gray-900/40 backdrop-blur-md border border-white/5 rounded-xl p-4 flex items-center gap-3">
+                <CheckCircle2 className="w-5 h-5 text-orange-500 shrink-0" />
+                <span className="font-bold text-sm uppercase tracking-tight text-white">
+                  {item}
+                </span>
               </div>
             ))}
           </div>
@@ -276,15 +265,13 @@ export default function App() {
             >
               CALL NOW
             </a>
-            {/* --- NEW WHATSAPP BUTTON GOES HERE --- */}
-        <button 
-          onClick={handleLocationShare}
-          className="mt-4 w-full bg-[#25D366] text-white font-black py-4 px-6 rounded-xl flex items-center justify-center gap-3 hover:bg-[#1DA851] transition-colors shadow-lg"
-        >
-          <MapPin className="w-6 h-6" />
-          📍 SHARE EXACT LOCATION
-        </button>
-        {/* -------------------------------------- */}
+            <button 
+              onClick={handleLocationShare}
+              className="mt-4 w-full bg-[#25D366] text-white font-black py-4 px-6 rounded-xl flex items-center justify-center gap-3 hover:bg-[#1DA851] transition-colors shadow-lg"
+            >
+              <MapPin className="w-6 h-6" />
+              📍 SHARE EXACT LOCATION
+            </button>
           </div>
         </section>
       </div>
@@ -328,8 +315,13 @@ export default function App() {
           100% { transform: translate3d(-50%, 0, 0); }
         }
         .animate-marquee {
-          animation: marquee 20s linear infinite;
+          animation: marquee 10s linear infinite;
           will-change: transform;
+        }
+        @media (max-width: 768px) {
+          .animate-marquee {
+            animation: marquee 5s linear infinite;
+          }
         }
       `}</style>
     </div>
