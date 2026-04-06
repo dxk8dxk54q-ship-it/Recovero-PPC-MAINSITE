@@ -119,9 +119,6 @@ export default function App() {
             >
               Need recovery right now? We connect you to a local recovery truck fast.
             </h2>
-            <p className="text-sm font-black text-orange-500 uppercase tracking-widest mb-4">
-              Call now and get a quote in seconds
-            </p>
 
             <ul 
               className="w-full text-left space-y-3 mb-10"
@@ -164,20 +161,38 @@ export default function App() {
         </div>
 
         {/* What We Help With Section */}
-        <section className="px-6 mb-16 max-w-lg mx-auto">
-          <h2 className="text-2xl font-black uppercase tracking-tighter mb-8">
+        <section className="px-6 mb-16 max-w-5xl mx-auto">
+          <h2 className="text-2xl font-black uppercase tracking-tighter mb-8 text-center">
             WHAT WE HELP WITH
           </h2>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
-              "Car won’t start", "Flat battery", "Accident recovery",
-              "Vehicle transport", "Non-runners", "Roadside issues"
-            ].map((item) => (
-              <div key={item} className="bg-gray-900/40 backdrop-blur-md border border-white/5 rounded-xl p-4 flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-orange-500 shrink-0" />
-                <span className="font-bold text-sm uppercase tracking-tight text-white">
-                  {item}
-                </span>
+              {
+                title: "Vehicle Recovery",
+                description: "Broken down in Portsmouth? Don't waste time with national call centres. We're local, we're fast, and we're ready to move you NOW.",
+                image: "https://github.com/dxk8dxk54q-ship-it/Recovero/blob/main/images/breakdown3-recovery.jpg?raw=true"
+              },
+              {
+                title: "Vehicle Transport",
+                description: "Need a vehicle moved in Portsmouth? Don't gamble with your car. We offer the safest, most reliable transport in the area. Call us.",
+                image: "https://github.com/dxk8dxk54q-ship-it/Recovero/blob/main/images/Transport-recovery.jpg.jpg?raw=true"
+              },
+              {
+                title: "Accident Recovery",
+                description: "Accident in Portsmouth? Stay safe and let us handle the rest. We’re the only team you need to clear the scene fast. Call Recovero immediately.",
+                image: "https://github.com/dxk8dxk54q-ship-it/Recovero/blob/main/images/accident-recovery.jpg?raw=true"
+              }
+            ].map((service) => (
+              <div key={service.title} className="bg-gray-900/40 backdrop-blur-md border border-white/5 rounded-xl overflow-hidden">
+                <img src={service.image} alt={service.title} className="w-full h-48 object-cover" referrerPolicy="no-referrer" />
+                <div className="p-4">
+                  <h3 className="font-black text-lg uppercase tracking-tight text-white mb-1">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -247,24 +262,16 @@ export default function App() {
 
         {/* Bottom Conversion Section */}
         <section className="flex flex-col items-center px-6 mb-24">
-          <div className="w-full max-w-lg flex flex-col items-center text-center gap-8">
-            <div className="flex flex-wrap justify-center gap-2">
-              {["24/7", "UPFRONT QUOTE", "NO MEMBERSHIP"].map((badge) => (
-                <span 
-                  key={badge} 
-                  className="bg-white text-black text-[10px] font-black px-4 py-2 rounded-full uppercase tracking-wider"
-                >
-                  {badge}
-                </span>
-              ))}
-            </div>
-            
+          <div className="w-full max-w-lg flex flex-col items-center text-center gap-4">
             <a
               href="tel:02392000000"
               className="group w-full bg-orange-500 text-black font-black text-2xl py-6 px-4 rounded-xl flex items-center justify-center gap-4 transition-colors shadow-[0_10px_40px_-10px_rgba(249,115,22,0.5)] z-[999] relative block cursor-pointer"
             >
               CALL NOW
             </a>
+            <p className="text-xs text-gray-400 text-center mt-2">
+              Only click this when you are on the call and we ask you to, so we can pinpoint your location.
+            </p>
             <button 
               onClick={handleLocationShare}
               className="mt-4 w-full bg-[#25D366] text-white font-black py-4 px-6 rounded-xl flex items-center justify-center gap-3 hover:bg-[#1DA851] transition-colors shadow-lg"
