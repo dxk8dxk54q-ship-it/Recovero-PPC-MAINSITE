@@ -47,9 +47,15 @@ export default function App() {
       <header className="absolute top-0 left-0 right-0 z-50 flex items-center justify-start px-6 py-4">
         <div className="flex items-center gap-4">
           <RecoveroLogo className="w-[64px] h-[64px] md:w-[88px] md:h-[88px] drop-shadow-xl" />
-          <span className="text-white font-black text-sm md:text-base uppercase tracking-widest opacity-95 mt-1 drop-shadow-md">
-            24/7 Recovery Line
-          </span>
+          <div className="flex items-center gap-2 mt-1 drop-shadow-md">
+            <div className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+            </div>
+            <span className="text-white font-black text-sm md:text-base uppercase tracking-widest opacity-95">
+              24/7 Recovery Line
+            </span>
+          </div>
         </div>
       </header>
 
