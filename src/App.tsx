@@ -3,48 +3,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Phone, CheckCircle2, Plus, Minus, Truck, MapPin, Anchor, ChevronDown } from "lucide-react";
+import { Phone, CheckCircle2, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import RecoveroLogo from './components/RecoveroLogo';
 
 export default function App() {
-  const phoneNumber = "023 9200 0000"; // Placeholder Portsmouth number
+  const phoneNumber = "07366302341"; // Main recovery line
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
-
-  const handleLocationShare = () => {
-    const phone = "447366302341"; // Your dispatch WhatsApp number
-    
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
-          // Clean standard Google Maps link
-          const mapLink = "https://www.google.com/maps?q=" + lat + "," + lng;
-          const message = encodeURIComponent("URGENT: I need recovery. My location: " + mapLink);
-          
-          // SAFARI BYPASS: Create an invisible link and click it programmatically
-          const link = document.createElement('a');
-          link.href = "https://wa.me/" + phone + "?text=" + message;
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        },
-        () => {
-          // Fallback if they block location or it fails
-          const failMsg = encodeURIComponent("URGENT: I need recovery assistance. (Location blocked).");
-          const link = document.createElement('a');
-          link.href = "https://wa.me/" + phone + "?text=" + failMsg;
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        },
-        // Force quick response so Safari doesn't time out the click
-        { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
-      );
-    } else {
-      window.location.href = "https://wa.me/" + phone + "?text=" + encodeURIComponent("URGENT: I need recovery assistance.");
-    }
-  };
 
   const faqs = [
     {
@@ -79,27 +44,12 @@ export default function App() {
       </div>
 
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-white shadow-sm">
-        <div className="flex items-center gap-2">
-          <div className="w-10 h-10 flex items-center justify-center">
-            <img 
-              src="https://github.com/dxk8dxk54q-ship-it/Recovero/blob/main/images/recovero-logo.png?raw=true" 
-              alt="Recovero24/7 Logo" 
-              className="w-full h-full object-contain"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-          <span className="text-black font-black text-xl tracking-tighter uppercase">
-            RECOVERO<span className="text-orange-600">24</span>/<span className="text-orange-600">7</span>
-          </span>
-        </div>
+      <header className="absolute top-0 left-0 right-0 z-50 flex items-center justify-start px-6 py-4">
         <div className="flex items-center gap-4">
-          <a
-            href="tel:02392000000"
-            className="hidden md:flex items-center justify-center bg-orange-500 text-black font-black px-4 py-2 rounded-lg text-sm uppercase tracking-widest shadow-lg z-[999] relative block cursor-pointer"
-          >
-            CALL NOW
-          </a>
+          <RecoveroLogo className="w-[64px] h-[64px] md:w-[88px] md:h-[88px] drop-shadow-xl" />
+          <span className="text-white font-black text-sm md:text-base uppercase tracking-widest opacity-95 mt-1 drop-shadow-md">
+            24/7 Recovery Line
+          </span>
         </div>
       </header>
 
@@ -117,17 +67,17 @@ export default function App() {
             <h2 
               className="text-lg md:text-xl font-medium text-gray-300 leading-tight mb-8 max-w-md"
             >
-              Need recovery right now? We’ll get a recovery truck to you fast.
+              Need recovery now? Call Recovero and we’ll arrange help with an upfront price before booking.
             </h2>
 
             <ul 
               className="w-full text-left space-y-3 mb-10"
             >
               {[
-                "Local Portsmouth recovery",
-                "Fast help for breakdowns & non-runners",
-                "Upfront quote before dispatch",
-                "No membership required"
+                "Local recovery arranged",
+                "Cars, vans, non-runners & accidents",
+                "No membership needed",
+                "Price confirmed before dispatch"
               ].map((text, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-orange-500 shrink-0 mt-0.5" />
@@ -136,14 +86,11 @@ export default function App() {
               ))}
             </ul>
 
-            <p className="text-sm font-black text-orange-500 uppercase tracking-widest mb-2">
-              CALL NOW — WE’LL GET YOU SORTED FAST
-            </p>
             <a
-              href="tel:02392000000"
+              href="tel:07366302341"
               className="group w-full bg-orange-500 text-black font-black text-2xl py-6 px-4 rounded-xl flex items-center justify-center gap-4 transition-colors shadow-[0_10px_40px_-10px_rgba(249,115,22,0.5)] z-[999] relative block cursor-pointer"
             >
-              CALL NOW
+              CALL 07366302341
             </a>
 
             {/* Trust Pills removed from here and moved to bottom for better conversion flow */}
@@ -167,7 +114,7 @@ export default function App() {
           </h2>
           <div className="grid grid-cols-2 gap-3 mb-8">
             {[
-              "Flat battery", "Roadside issues"
+              "Breakdown Recovery", "Accident Recovery", "Non-Runner Recovery", "Vehicle Transport"
             ].map((item) => (
               <div key={item} className="bg-gray-900/40 backdrop-blur-md border border-white/5 rounded-xl p-4 flex items-center gap-3">
                 <CheckCircle2 className="w-5 h-5 text-orange-500 shrink-0" />
@@ -208,18 +155,6 @@ export default function App() {
               </div>
             ))}
           </div>
-          
-          <div className="mt-12 text-center">
-            <p className="text-sm font-black text-orange-500 uppercase tracking-widest mb-4">
-              Call now — we’ll get a recovery truck out to you fast
-            </p>
-            <a
-              href="tel:02392000000"
-              className="group w-full bg-orange-500 text-black font-black text-2xl py-6 px-4 rounded-xl flex items-center justify-center gap-4 transition-colors shadow-[0_10px_40px_-10px_rgba(249,115,22,0.5)] z-[999] relative block cursor-pointer"
-            >
-              CALL NOW
-            </a>
-          </div>
         </section>
 
         {/* FAQ Section */}
@@ -255,78 +190,7 @@ export default function App() {
             ))}
           </div>
         </section>
-
-        {/* Bottom Conversion Section */}
-        <section className="flex flex-col items-center px-6 mb-24">
-          <div className="w-full max-w-lg flex flex-col items-center text-center gap-4">
-            <a
-              href="tel:02392000000"
-              className="group w-full bg-orange-500 text-black font-black text-2xl py-6 px-4 rounded-xl flex items-center justify-center gap-4 transition-colors shadow-[0_10px_40px_-10px_rgba(249,115,22,0.5)] z-[999] relative block cursor-pointer"
-            >
-              CALL NOW
-            </a>
-            <p className="text-xs text-gray-400 text-center mt-2">
-              Only click this when you are on the call and we ask you to, so we can pinpoint your location.
-            </p>
-            <button 
-              onClick={handleLocationShare}
-              className="mt-4 w-full bg-[#25D366] text-white font-black py-4 px-6 rounded-xl flex items-center justify-center gap-3 hover:bg-[#1DA851] transition-colors shadow-lg"
-            >
-              <MapPin className="w-6 h-6" />
-              📍 SHARE EXACT LOCATION
-            </button>
-          </div>
-        </section>
       </div>
-
-      {/* Sticky Footer Location Ticker */}
-      <footer className="fixed bottom-0 left-0 right-0 z-50 bg-orange-500 py-3 overflow-hidden border-t border-orange-600/20">
-        <div className="flex whitespace-nowrap animate-marquee">
-          <div className="flex items-center gap-4 px-4 text-black font-black text-sm uppercase tracking-widest">
-            <span className="text-black/60">RECOVERO 24/7</span>
-            <span>&gt; PETERSFIELD</span>
-            <span>&gt; WINCHESTER</span>
-            <span>&gt; ANDOVER</span>
-            <span>&gt; FAREHAM</span>
-            <span>&gt; HAVANT</span>
-            <span>&gt; WATERLOOVILLE</span>
-            <span>&gt; GOSPORT</span>
-            <span className="bg-black text-orange-500 px-2 py-0.5 rounded ml-2 flex items-center gap-1">
-              <Phone className="w-3 h-3 fill-orange-500" />
-              {phoneNumber}
-            </span>
-            {/* Duplicate for seamless loop */}
-            <span className="text-black/60 ml-4">RECOVERO 24/7</span>
-            <span>&gt; PETERSFIELD</span>
-            <span>&gt; WINCHESTER</span>
-            <span>&gt; ANDOVER</span>
-            <span>&gt; FAREHAM</span>
-            <span>&gt; HAVANT</span>
-            <span>&gt; WATERLOOVILLE</span>
-            <span>&gt; GOSPORT</span>
-            <span className="bg-black text-orange-500 px-2 py-0.5 rounded ml-2 flex items-center gap-1">
-              <Phone className="w-3 h-3 fill-orange-500" />
-              {phoneNumber}
-            </span>
-          </div>
-        </div>
-      </footer>
-
-      <style>{`
-        @keyframes marquee {
-          0% { transform: translate3d(0, 0, 0); }
-          100% { transform: translate3d(-50%, 0, 0); }
-        }
-        .animate-marquee {
-          animation: marquee 10s linear infinite;
-          will-change: transform;
-        }
-        @media (max-width: 768px) {
-          .animate-marquee {
-            animation: marquee 5s linear infinite;
-          }
-        }
-      `}</style>
     </div>
   );
 }
