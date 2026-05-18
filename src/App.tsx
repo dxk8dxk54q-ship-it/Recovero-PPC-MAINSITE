@@ -25,8 +25,8 @@ export default function App() {
       answer: "Yes. We provide an upfront quote before we dispatch a truck."
     },
     {
-      question: "Do you cover my area?",
-      answer: "We cover Portsmouth and all surrounding areas. Call us with your location to confirm."
+      question: "Do you cover areas outside Portsmouth?",
+      answer: "Yes. We arrange recovery across Portsmouth and surrounding areas including Southsea, Cosham, Havant, Fareham, Gosport, Waterlooville, Portchester, Emsworth, Chichester and Southampton. Call us and we’ll confirm availability before booking."
     }
   ];
 
@@ -73,7 +73,7 @@ export default function App() {
             <h2 
               className="text-lg md:text-xl font-medium text-gray-300 leading-tight mb-8 max-w-md"
             >
-              Need recovery now? Call Recovero and we’ll arrange help with an upfront price before booking.
+              Need recovery now? Call Recovero and we’ll arrange help across Portsmouth and nearby areas, with an upfront price before booking.
             </h2>
 
             <ul 
@@ -118,18 +118,6 @@ export default function App() {
           <h2 className="text-2xl font-black uppercase tracking-tighter mb-8 text-center">
             WHAT WE HELP WITH
           </h2>
-          <div className="grid grid-cols-2 gap-3 mb-8">
-            {[
-              "Breakdown Recovery", "Accident Recovery", "Non-Runner Recovery", "Vehicle Transport"
-            ].map((item) => (
-              <div key={item} className="bg-gray-900/40 backdrop-blur-md border border-white/5 rounded-xl p-4 flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-orange-500 shrink-0" />
-                <span className="font-bold text-sm uppercase tracking-tight text-white">
-                  {item}
-                </span>
-              </div>
-            ))}
-          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
               {
@@ -160,6 +148,52 @@ export default function App() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Areas We Cover Section */}
+        <section className="px-6 mb-16 max-w-5xl mx-auto">
+          <h2 className="text-2xl font-black uppercase tracking-tighter mb-4 text-center">
+            AREAS WE COVER
+          </h2>
+          <p className="text-gray-400 font-medium text-sm md:text-base mb-8 text-center max-w-2xl mx-auto">
+            Recovero arranges vehicle recovery across Portsmouth and surrounding areas.
+          </p>
+          <div className="relative overflow-hidden w-full max-w-[100vw] mb-8">
+            {/* Fade effect edges */}
+            <div className="absolute top-0 left-0 bottom-0 w-8 md:w-32 bg-gradient-to-r from-black to-transparent z-10"></div>
+            <div className="absolute top-0 right-0 bottom-0 w-8 md:w-32 bg-gradient-to-l from-black to-transparent z-10"></div>
+
+            <div className="flex w-max animate-marquee gap-3 hover:[animation-play-state:paused]">
+              {[...Array(2)].map((_, arrayIndex) => (
+                <div key={arrayIndex} className="flex gap-3">
+                  {[
+                    "Portsmouth", "Southsea", "Cosham", "Havant", "Fareham", 
+                    "Gosport", "Waterlooville", "Portchester", "Emsworth", 
+                    "Chichester", "Southampton"
+                  ].map((area) => (
+                    <div key={`${arrayIndex}-${area}`} className="bg-gray-900/40 backdrop-blur-md border border-white/5 rounded-full px-4 py-2 flex items-center gap-2 m-0">
+                      <CheckCircle2 className="w-4 h-4 text-orange-500 shrink-0" />
+                      <span className="font-bold text-sm uppercase tracking-tight text-white whitespace-nowrap">
+                        {area}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="flex flex-col items-center text-center mt-10">
+            <p className="text-sm font-black text-gray-300 uppercase tracking-widest mb-4">
+              Not sure if we cover your location? Call us and we’ll check availability.
+            </p>
+            <a
+              href="tel:07366302341"
+              className="bg-orange-500 text-black font-black text-lg py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-colors shadow-lg z-10 relative cursor-pointer"
+            >
+              CALL 07366302341
+            </a>
           </div>
         </section>
 
@@ -197,6 +231,20 @@ export default function App() {
           </div>
         </section>
       </div>
+      <style>{`
+        @keyframes marquee {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          animation: marquee 25s linear infinite;
+        }
+        @media (max-width: 768px) {
+          .animate-marquee {
+            animation: marquee 15s linear infinite;
+          }
+        }
+      `}</style>
     </div>
   );
 }
